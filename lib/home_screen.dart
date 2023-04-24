@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'counter.dart';
+
 class HomeScreen extends StatelessWidget {
   final String message;
 
@@ -10,7 +12,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: Column(
-        children: [Text("Hello world"), Text(message)],
+        children: [Text("Hello world"), Text(message), Counter()],
       )),
     );
   }

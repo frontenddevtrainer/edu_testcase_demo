@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import "package:flutter_test/flutter_test.dart";
 import 'package:edu_test_demo/home_screen.dart';
@@ -34,5 +36,30 @@ void main() {
     final widget = find.text(message);
 
     expect(widget, findsOneWidget);
+  });
+
+  testWidgets("Homescreen Widget > counter value should increase.",
+      (WidgetTester tester) async {
+    final String message = "This is a message to show.";
+
+    await tester.pumpWidget(MaterialApp(
+      home: HomeScreen(message: message),
+    ));
+
+    // counter start with 0 value.
+    final widget = find.text("0");
+    expect(widget, findsOneWidget);
+
+    // Trigger tap event
+    final button = find.byType(ElevatedButton);
+    await tester.tap(button);
+
+    // Rebuild
+    await tester.pump();
+
+    // counter start with 1 value.
+    final widgetCounter = find.text("1");
+    expect(widgetCounter, findsOneWidget);
+
   });
 }
