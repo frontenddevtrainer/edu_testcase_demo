@@ -1,3 +1,5 @@
+import 'package:edu_test_demo/api.dart';
+import 'package:edu_test_demo/product_listing.dart';
 import 'package:flutter/material.dart';
 
 import 'counter.dart';
@@ -12,7 +14,11 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
           child: Column(
-        children: [Text("Hello world"), Text(message), Counter()],
+        children: [
+          Text("Hello world"),
+          Text(message),
+          Counter()
+        ],
       )),
     );
   }
