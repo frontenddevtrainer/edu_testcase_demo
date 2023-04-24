@@ -14,8 +14,17 @@ class _CounterState extends State<Counter> {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        ElevatedButton(
+            key: const ValueKey("decrease_button"),
+            onPressed: () {
+              setState(() {
+                counter = counter - 1;
+              });
+            },
+            child: Text("-")),
         Text(counter.toString()),
         ElevatedButton(
+            key: const ValueKey("increase_button"),
             onPressed: () {
               setState(() {
                 counter = counter + 1;
