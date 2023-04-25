@@ -1,37 +1,43 @@
+import "dart:io";
+
 import "package:edu_test_demo/models/student.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:mockito/annotations.dart";
 import "package:mockito/mockito.dart";
 import "package:edu_test_demo/models/person.dart";
+import "package:http/http.dart" as http;
 
 import "person_test.mocks.dart";
 
-
-@GenerateMocks([Person])
+@GenerateMocks([Person, http.Client])
 void main() {
+  final person = MockPerson();
+  final client = MockClient();
+  final Student student =
+      Student(person: person, client: client);
 
-    final person = MockPerson();
-    final Student student = Student(person: person);
+  test("verify person can talk", () {
+    when(person.talk()).thenReturn("hello world");
 
-    test("verify person can talk", (){
-      
-      when(person.talk()).thenReturn("hello world");
+    person.talk();
 
-      person.talk();
+    verify(person.talk());
+  });
 
-      verify(person.talk());
+  test("verify student can reply", () {
+    when(person.talk()).thenReturn("hello world");
 
-    });
+    student.reply();
 
-    test("verify student can reply", (){
+    verify(person.talk());
+  });
 
-      when(person.talk()).thenReturn("hello world");
+  test("verify student get courses", () {
+    when(client.get(Uri.parse("http://example.com/courses")))
+        .thenAnswer((realInvocation) async => http.Response('{}', 200));
 
-      student.reply();
+    student.courses();
 
-      verify(person.talk());
-
-
-    });
-
+    verify(client.get(Uri.parse("http://example.com/courses")));
+  });
 }
