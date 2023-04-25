@@ -1,11 +1,10 @@
 import "dart:convert";
-
 import "package:http/http.dart" as http;
 
 class ProductsAPI {
   final String url = "https://jsonplaceholder.typicode.com/photos";
 
-  Future getProducts() async {
+  getProducts() async {
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
