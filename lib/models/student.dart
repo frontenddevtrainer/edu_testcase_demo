@@ -4,18 +4,21 @@ import 'dart:io';
 import 'package:edu_test_demo/models/person.dart';
 import "package:http/http.dart" as http;
 
-class Student {
+class StudentModel {
   final Person person;
   final http.Client client;
 
-  Student({required this.person, required this.client});
+  StudentModel({required this.person, required this.client});
 
   reply() {
     return person.talk();
   }
 
-  courses() async {
+  Future<List<dynamic>> courses() async {
     final response = await client.get(Uri.parse("http://example.com/courses"));
+
+    print(response.body);
+
 
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
