@@ -15,7 +15,7 @@ class HomeScreen extends StatelessWidget {
       body: SafeArea(
           child: Column(
         children: [
-          Text("Hello world"),
+          Text("Hello world!!!"),
           Text(message),
           Counter()
         ],
