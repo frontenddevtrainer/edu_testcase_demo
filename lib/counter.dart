@@ -21,7 +21,7 @@ class _CounterState extends State<Counter> {
                 counter = counter - 1;
               });
             },
-            child: Text("-")),
+            child: Text("-1")),
         Text(counter.toString()),
         ElevatedButton(
             key: const ValueKey("increase_button"),
@@ -30,7 +30,7 @@ class _CounterState extends State<Counter> {
                 counter = counter + 1;
               });
             },
-            child: Text("+"))
+            child: Text("+1"))
       ],
     );
   }
